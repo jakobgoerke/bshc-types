@@ -24,7 +24,7 @@
   },
   "files": [
     "package.json",
-    "build/src/**"
+    "build/**"
   ],
   "dependencies": {
     "zod": "3.24.1"
