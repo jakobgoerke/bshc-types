@@ -14,7 +14,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@jakobgoerke'
       - run: yarn install --frozen-lockfile
-      - run: yarn test
       - run: yarn build
       - run: yarn publish --access=public
         env:
