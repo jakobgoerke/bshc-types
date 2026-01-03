@@ -1,6 +1,6 @@
 {
   "name": "@jakobgoerke/bshc-types",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "build",
   "types": "build/index.d.ts",
   "repository": "git@github.com:jakobgoerke/bshc-types.git",
