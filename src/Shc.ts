@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { DeviceServiceType, DeviceStateSchema } from './Device';
+import { DeviceServiceType, type DeviceState, DeviceStateSchema } from './Device';
 
 export enum EntityType {
   Room = 'room',
@@ -54,7 +54,10 @@ export const DeviceServiceSchema = z.object({
   path: z.string(),
   state: DeviceStateSchema,
 });
-export type DeviceService = z.infer<typeof DeviceServiceSchema>;
+
+export type DeviceServiceData<TState extends DeviceState = DeviceState> = {
+  [K in keyof z.infer<typeof DeviceServiceSchema>]: K extends 'state' ? TState : z.infer<typeof DeviceServiceSchema>[K];
+};
 
 export const DeletionEventSchema = z.object({
   deleted: z.boolean().optional(),

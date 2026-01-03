@@ -129,9 +129,9 @@ export const RoomClimateControlStateSchema = z.object({
           z.object({
             startTimeMinuts: z.number(),
             value: TemperatureLevelSwitchPointValueStateSchema,
-          })
+          }),
         ),
-      })
+      }),
     ),
   }),
 });
