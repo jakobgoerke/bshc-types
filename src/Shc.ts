@@ -36,14 +36,14 @@ export const DeviceSchema = z.object({
   '@type': z.literal(EntityType.Device),
   rootDeviceId: z.string(),
   id: z.string(),
-  deviceServiceIds: z.array(z.nativeEnum(DeviceServiceType)),
+  deviceServiceIds: z.array(z.enum(DeviceServiceType)),
   manufacturer: z.string(),
   roomId: z.string(),
-  deviceModel: z.nativeEnum(DeviceModel),
+  deviceModel: z.enum(DeviceModel),
   serial: z.string(),
   profile: z.string(),
   name: z.string(),
-  status: z.nativeEnum(DeviceStatus),
+  status: z.enum(DeviceStatus),
 });
 export type Device = z.infer<typeof DeviceSchema>;
 

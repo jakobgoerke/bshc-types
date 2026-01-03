@@ -6,6 +6,16 @@ function zObjectKeys<T extends Record<string, any>>(obj: T) {
   return z.enum(keys as [Extract<keyof T, string>, ...Extract<keyof T, string>[]]);
 }
 
+export enum ShutterContactValue {
+  OPEN = 'OPEN',
+  CLOSED = 'CLOSED',
+}
+export const ShutterContactStateSchema = z.object({
+  '@type': z.literal('shutterContactState'),
+  value: z.enum(ShutterContactValue),
+});
+export type ShutterContactState = z.infer<typeof ShutterContactStateSchema>;
+
 export const TemperatureLevelStateSchema = z.object({
   '@type': z.literal('temperatureLevelState'),
   temperature: z.number(),
@@ -113,8 +123,8 @@ export const RoomClimateControlStateSchema = z.object({
   '@type': z.literal('climateControlState'),
   boostMode: z.boolean(),
   low: z.boolean(),
-  operationMode: z.nativeEnum(OperationMode),
-  roomControlMode: z.nativeEnum(ThermostatSupportedControlMode),
+  operationMode: z.enum(OperationMode),
+  roomControlMode: z.enum(ThermostatSupportedControlMode),
   setpointTemperature: z.number(),
   setpointTemperatureForLevelComfort: z.number(),
   setpointTemperatureForLevelEco: z.number(),
@@ -124,7 +134,7 @@ export const RoomClimateControlStateSchema = z.object({
   schedule: z.object({
     profiles: z.array(
       z.object({
-        day: z.nativeEnum(Days),
+        day: z.enum(Days),
         switchPoints: z.array(
           z.object({
             startTimeMinuts: z.number(),
